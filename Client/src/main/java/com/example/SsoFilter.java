@@ -44,6 +44,9 @@ public class SsoFilter extends AbstractAuthenticationProcessingFilter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
         System.out.println("hooked into ssoFilter");
+        System.out.println("Request name: " + req.getLocalName());
+        System.out.println("Request add: " + req.getLocalAddr());
+        System.out.println("Response: " + res.getLocale());
         chain.doFilter(request, response);
 
     }
