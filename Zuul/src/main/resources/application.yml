@@ -10,6 +10,8 @@ server:
 spring:
   application:
     name: zuul
+zuul:
+  sensitive-headers:
 ---
 spring:
   profiles: docker_env

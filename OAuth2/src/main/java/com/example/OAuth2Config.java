@@ -26,14 +26,14 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 	// commandLine: keytool -genkey -keyalg RSA -alias selfsigned_new -keystore
 	// keystore_new.jks -storepass password -validity 360 -keysize 2048
 
-//	@Bean
-//	public JwtAccessTokenConverter jwtAccessTokenConverter() {
-//		JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-//		KeyPair keyPair = new KeyStoreKeyFactory(new ClassPathResource("keystore_new.jks"), "password".toCharArray())
-//				.getKeyPair("selfsigned_new");
-//		converter.setKeyPair(keyPair);
-//		return converter;
-//	}
+	@Bean
+	public JwtAccessTokenConverter jwtAccessTokenConverter() {
+		JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+		KeyPair keyPair = new KeyStoreKeyFactory(new ClassPathResource("keystore_new.jks"), "password".toCharArray())
+				.getKeyPair("selfsigned_new");
+		converter.setKeyPair(keyPair);
+		return converter;
+	}
 //
 //	@Override
 //	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -45,23 +45,23 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 //		;
 //	}
 
-//	@Override
-//	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-//		endpoints.authenticationManager(authenticationManager).accessTokenConverter(jwtAccessTokenConverter());
-//
-//	}
+	@Override
+	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+		endpoints.authenticationManager(authenticationManager).accessTokenConverter(jwtAccessTokenConverter());
 
-//	@Override
-//	public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
-//		oauthServer.allowFormAuthenticationForClients().tokenKeyAccess("permitAll()");
-//	}
+	}
+
+	@Override
+	public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
+		oauthServer.allowFormAuthenticationForClients().tokenKeyAccess("permitAll()");
+	}
 
 	
-    @Override
-    public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
-        oauthServer.tokenKeyAccess("permitAll()")
-                   .checkTokenAccess("isAuthenticated()");
-    }
+//    @Override
+//    public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
+//        oauthServer.tokenKeyAccess("permitAll()")
+//                   .checkTokenAccess("isAuthenticated()");
+//    }
  
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -73,9 +73,9 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
                .autoApprove(true) ; 
     }
  
-    @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.authenticationManager(authenticationManager);
-    }
+//    @Override
+//    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+//        endpoints.authenticationManager(authenticationManager);
+//    }
 	
 }
