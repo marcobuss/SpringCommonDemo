@@ -9,7 +9,7 @@ services:
   oauth2:
     environment:
       SPRING_PROFILES_ACTIVE: docker_env
-      ENV_HOST: 192.168.99.101
+      ENV_HOST: 0.0.0.0
     build: ./oauth2
     networks:
     - mynetwork
@@ -18,7 +18,7 @@ services:
   zuul:
     environment:
       SPRING_PROFILES_ACTIVE: docker_env
-      ENV_HOST: 192.168.99.101
+      ENV_HOST: 0.0.0.0
     build: ./zuul
     networks:
     - mynetwork
@@ -27,8 +27,10 @@ services:
   client:
     environment:
       SPRING_PROFILES_ACTIVE: docker_env
-      ENV_HOST: 192.168.99.101
+      ENV_HOST: 0.0.0.0
     build: ./client
+    ports:
+    - 8080:8080
     networks:
     - mynetwork
     depends_on:
