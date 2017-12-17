@@ -4,6 +4,6 @@ build:
     - script:
       name: got client dir
       code: |
-        cd client
+        cd Client
     - xenoterracide/maven:
         goals: package
