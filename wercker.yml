@@ -1,5 +1,9 @@
 box: maven:latest
 build:
   steps:
+    - script:
+      name: got client dir
+      code: |
+        cd client
     - xenoterracide/maven:
         goals: package
