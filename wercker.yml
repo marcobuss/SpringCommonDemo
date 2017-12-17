@@ -1,9 +1,9 @@
 box: maven:latest
 build:
   steps:
-    - script:
-      name: got client dir
-      code: |
-        cd Client
     - xenoterracide/maven:
         goals: package
+    - script:
+      name: docker-compose
+      code: |
+         docker-compose build
